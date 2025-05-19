@@ -1,0 +1,4 @@
+A classe Pessoa representa o usuário. Essa classe possui a capacidade de usar um carro, e para tanto, é necessário uma CNH.
+A classe Pessoa então, possui o atributo CNH. Além disso, essa classe deve ser capaz de lembrar de cada carro que já dirigiu.
+Por esse motivo, ela também possui uma lista de Carros, que indica o histórico, ou, como indicado pelo nome da variável, o registro. A classe pessoa tambem pode comprar um carro, que nesse caso, e um processo bem simples.
+Por fim, a classe Carro possui os dados relevantes para o carro, como a marca, o modelo e o ano. Ele possui comportamentos como dirigir, delisgar, e ligar, além de um método para capturar cada um dos atributos que são privados.

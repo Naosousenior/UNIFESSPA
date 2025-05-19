@@ -13,7 +13,7 @@ public class Instrutor {
 	}
 	
 	public void ministrarAula(Curso c) {
-		System.out.printf("%s esta ministrando aula de %s\n",this.nome,c);
+		System.out.printf("%s esta ministrando aula de %s\n",this.nome,c.getNome());
 		System.out.println("Informacoes sobre o curso:");
 		System.out.println(c.getInformacoes());
 		System.out.println("Instrutores do curso:");

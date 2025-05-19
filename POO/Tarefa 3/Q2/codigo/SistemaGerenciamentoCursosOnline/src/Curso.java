@@ -16,7 +16,13 @@ public class Curso {
 		this.instrutores = new ArrayList<Instrutor>();
 	}
 	
+	public String getNome() {return this.nome;}
+	
 	public String getInformacoes() {
+		if (this.instrutores.size() < 1) {
+			return "O curso esta inapto, pois nao ha instrutor para ministra-lo";
+		}
+		
 		return String.format(
 				"Nome do curso: %s\nNivel de graduacao do curso: %s\nDescricao: %s"
 				+"\nHoras: %d\n",
@@ -42,4 +48,6 @@ public class Curso {
 		
 		return texto;
 	}
+	
+	public void addInstrutor(Instrutor instrutor) {this.instrutores.add(instrutor);}
 }

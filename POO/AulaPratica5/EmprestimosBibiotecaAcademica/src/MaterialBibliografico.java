@@ -8,5 +8,7 @@ public class MaterialBibliografico {
 		this.codigo = codigo;
 	}
 	
-	public void emprestar() {}
+	public void emprestar() {
+		System.out.printf("Titulo: %s. Codigo: %s",this.titulo,this.codigo);
+	}
 }

@@ -12,6 +12,7 @@ public class Livro extends MaterialBibliografico{
 	
 	@Override
 	public void emprestar() {
+		super.emprestar();
 		if (this.qtdEmprestados > 2) {
 			System.out.println("Não é possível emprestar o livro "+this.autor
 					+" pois ja foram feitos 3 emprestimos.");

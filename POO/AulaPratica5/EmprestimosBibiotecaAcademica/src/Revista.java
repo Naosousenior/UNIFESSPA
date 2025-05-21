@@ -12,6 +12,7 @@ public class Revista extends MaterialBibliografico{
 	}
 	
 	public void emprestar() {
+		super.emprestar();
 		if (this.validarData()) {
 			System.out.printf("Revista %s edicao %d emprestada\n",this.titulo,this.mesAnoEdicao[2]);
 			return;

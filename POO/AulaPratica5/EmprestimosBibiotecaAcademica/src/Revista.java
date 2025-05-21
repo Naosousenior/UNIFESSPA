@@ -4,8 +4,7 @@ public class Revista extends MaterialBibliografico{
 	public int[] mesAnoEdicao;
 	
 	public Revista(String titulo,String codigo,int mes, int ano, int edicao) {
-		this.titulo = titulo;
-		this.codigo = codigo;
+		super(titulo, codigo);
 		this.mesAnoEdicao = new int[3];
 		this.mesAnoEdicao[0] =  mes;
 		this.mesAnoEdicao[1] = ano;

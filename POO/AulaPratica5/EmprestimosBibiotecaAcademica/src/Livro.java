@@ -5,8 +5,7 @@ public class Livro extends MaterialBibliografico{
 	private int qtdEmprestados = 0;
 	
 	public Livro(String titulo, String codigo, String autor, String ISBN) {
-		this.titulo = titulo;
-		this.codigo = codigo;
+		super(titulo, codigo);
 		this.autor = autor;
 		this.ISBN = ISBN;
 	}

@@ -10,9 +10,6 @@ public class Main {
 		e.adicionarFuncionario(f1);
 		e.adicionarFuncionario(f2);
 		e.adicionarFuncionario(f3);
-		e.registraPresenca(f1);
-		e.registraPresenca(f2);
-		e.registraPresenca(f3);
 		e.registraPresenca(f4);
 	}
 }

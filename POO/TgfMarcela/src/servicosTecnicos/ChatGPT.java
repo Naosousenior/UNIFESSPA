@@ -1,3 +1,4 @@
+package servicosTecnicos;
 
 
 import java.net.URI;
@@ -7,15 +8,17 @@ import java.net.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import dominio.Responder;
 
-public class ChatBot {
+
+public class ChatGPT implements Responder{
 	private final String API_KEY;
 	
-	public ChatBot(String chave) {
+	public ChatGPT(String chave) {
 		this.API_KEY = chave;
 	}
 	
-	public String getCompletion(String prompt) throws Exception {
+	public String responder(String prompt) throws Exception {
         JSONObject data = new JSONObject();
         data.put("model", "gpt-3.5-turbo");
         data.put("messages", new JSONArray()

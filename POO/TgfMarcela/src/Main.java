@@ -3,10 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+import servicosTecnicos.ChatGPT;
+
 public class Main {
 	public static void main(String[] args) {
 		Scanner ler = new Scanner(System.in);
-		ChatBot bot = new ChatBot(ler.nextLine());
+		ChatGPT bot = new ChatGPT(ler.nextLine());
         FrontEnd front = new FrontEnd();
         front.setAction(new ActionListener() {
 			

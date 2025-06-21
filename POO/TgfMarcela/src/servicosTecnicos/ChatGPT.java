@@ -1,17 +1,19 @@
 package servicosTecnicos;
 
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Path;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import dominio.Responder;
+import dominio.Respondendo;
 
 
-public class ChatGPT implements Responder{
+public class ChatGPT implements Respondendo{
+	private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 	private final String API_KEY;
 	
 	public ChatGPT(String chave) {
@@ -31,7 +33,7 @@ public class ChatGPT implements Responder{
         data.put("temperature", 1.0);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(new URI("https://api.openai.com/v1/chat/completions"))
+            .uri(new URI(ChatGPT.API_URL))
             .header("Authorization", "Bearer " + API_KEY)
             .header("Content-Type", "application/json")
             .POST(HttpRequest.BodyPublishers.ofString(data.toString()))
@@ -47,4 +49,17 @@ public class ChatGPT implements Responder{
                     .get("content").toString();
         }
     }
+	
+	public void prepare(Path[] arquivos) {
+		
+	}
 }
+
+		
+		
+		
+		
+		
+		
+		
+		

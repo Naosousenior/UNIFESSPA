@@ -8,9 +8,9 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import dominio.Respondendo;
+import dominio.Conversante;
 
-public class RespostaProntas extends HashMap<String,String> implements Respondendo{
+public class RespostaProntas extends HashMap<String,String> implements Conversante{
 	private static final long serialVersionUID = 1L;
 
 	public RespostaProntas() {

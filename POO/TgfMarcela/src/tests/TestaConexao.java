@@ -8,9 +8,6 @@ public class TestaConexao {
         try {
         	Env.load("src/assets/environment.env");
             ConexaoBD.initConnection(Env.get("BD_URL"),Env.get("BD_USER"),Env.get("BD_PASSWORD"));
-            ConexaoBD.executeInstrucao(
-                    "INSERT INTO mensagens (usuario, mensagem) VALUES ('Elson', 'Olá, chatbot!')"
-            );
         } catch (Exception e) {
             System.err.println("Erro na execução: " + e.getMessage());
         }

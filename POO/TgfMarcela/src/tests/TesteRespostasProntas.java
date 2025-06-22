@@ -3,12 +3,12 @@ package tests;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import dominio.Respondendo;
+import dominio.Conversante;
 import servicosTecnicos.RespostaProntas;
 
 public class TesteRespostasProntas {
 	public static void main(String[] args) {
-		Respondendo respo = new RespostaProntas();
+		Conversante respo = new RespostaProntas();
 		Path[] arquivos = new Path[1];
 		arquivos[0] = Paths.get("src/assets/perguntas_respostas.json");
 		

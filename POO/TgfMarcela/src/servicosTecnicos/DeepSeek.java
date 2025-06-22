@@ -8,9 +8,9 @@ import java.nio.file.Path;
 
 import org.json.JSONObject;
 
-import dominio.Respondendo;
+import dominio.Conversante;
 
-public class DeepSeek implements Respondendo {
+public class DeepSeek implements Conversante {
     private static final String API_URL = "https://openrouter.ai/api/v1/chat/completions";
     private final String API_KEY;
 
@@ -26,7 +26,7 @@ public class DeepSeek implements Respondendo {
     			new JSONObject().put("role", "user").put("content", text)
     			});
     	requestBody.put("temperature", 1);
-    	requestBody.put("stream",false);
+    	requestBody.put("stream",true);
 
     	HttpClient client = HttpClient.newHttpClient();
     	HttpRequest request = HttpRequest.newBuilder()
@@ -37,15 +37,15 @@ public class DeepSeek implements Respondendo {
     			.build();
         
     	HttpResponse<String> resposta = client.send(request, HttpResponse.BodyHandlers.ofString());
-    	if(resposta.statusCode() != 200) {
+    	if (resposta.statusCode() != 200) {
     		throw new RuntimeException("Erro na requisição: " + resposta.statusCode() + " - " + resposta.body());
-    		} else {
-    			return new JSONObject(resposta.body())
-    					.getJSONArray("choices")
-                        .getJSONObject(0)
-                        .getJSONObject("message")
-                        .get("content").toString();
-            }
+		} else {
+			return new JSONObject(resposta.body())
+					.getJSONArray("choices")
+                    .getJSONObject(0)
+                    .getJSONObject("message")
+                    .get("content").toString();
+        }
     }
         
     public void prepare(Path[] arquivos) {

@@ -2,7 +2,6 @@ package tests;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import dominio.HistoricoController;
@@ -23,13 +22,13 @@ public class TestaHistorico {
 				System.out.println("[%s %s]: %s".formatted(m.getAutor(),m.getDataTime().toString(),m.getTexto()));
 			}
 			
-			hc.addMensagem(new MensagemUsuario("adolfo","Eai meu brother",LocalDateTime.now()));
+			hc.addMensagem(new MensagemUsuario("adolfo","Eai meu brother"));
 			Thread.sleep(1000);
-			hc.addMensagem(new MensagemUsuario("ia","ola meu peixe",LocalDateTime.now()));
+			hc.addMensagem(new MensagemUsuario("IA","ola meu peixe"));
 			Thread.sleep(1000);
-			hc.addMensagem(new MensagemUsuario("adolfo","como vc ta",LocalDateTime.now()));
+			hc.addMensagem(new MensagemUsuario("adolfo","como vc ta"));
 			Thread.sleep(1000);
-			hc.addMensagem(new MensagemUsuario("ia","to bem meu peixe",LocalDateTime.now()));
+			hc.addMensagem(new MensagemUsuario("IA","to bem meu peixe"));
 			Thread.sleep(1000);
 			hc.salvarNovasMensagens();
 			Thread.sleep(1000);

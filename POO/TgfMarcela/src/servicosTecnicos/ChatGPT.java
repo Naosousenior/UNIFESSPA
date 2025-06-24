@@ -31,6 +31,7 @@ public class ChatGPT extends ConexaoAPIIA implements Conversante{
         data.put("model", "gpt-4-turbo");
         data.put("max_tokens", 4000);
         data.put("temperature", 1.0);
+        data.put("stream", false);
         
         JSONObject promptJSON = new JSONObject()
                 .put("role", "user")
@@ -47,7 +48,12 @@ public class ChatGPT extends ConexaoAPIIA implements Conversante{
         
         data.put("messages",mensagens);
         
-        return fazRequisicao(data);
+        JSONObject resposta = fazRequisicao(data);
+        
+        return resposta.getJSONArray("choices")
+                .getJSONObject(0)
+                .getJSONObject("message")
+                .getString("content");
     }
 	
 	public void prepare(Path[] arquivos) {

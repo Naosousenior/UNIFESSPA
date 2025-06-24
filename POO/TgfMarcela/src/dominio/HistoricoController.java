@@ -1,13 +1,9 @@
 package dominio;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import app.Main;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import servicosTecnicos.ConexaoBD;
 import servicosTecnicos.HistoricoDAO;
 
 public class HistoricoController {
@@ -23,10 +19,8 @@ public class HistoricoController {
 		try {
 			this.historicoDAO.criarTabelaHistorico();
 			List<Mensagem> mensagensList = this.historicoDAO.carregarMensagens();
-			Mensagem[] mensagensArray = new Mensagem[mensagensList.size()];
-			mensagensList.toArray(mensagensArray);
 			
-			this.historico = new Historico(mensagensArray);
+			this.historico = new Historico(mensagensList);
 		} catch (SQLException e) {
 			Main.finalizarPrograma("Problemas com o banco de dados", e.getMessage());
 		}
@@ -55,10 +49,7 @@ public class HistoricoController {
 			
 			
 		} catch (SQLException e) {
-			Alert alerta = new Alert(AlertType.ERROR);
-			alerta.setTitle("Não foi possível atualizar a mensagem");
-			alerta.setContentText(e.getMessage());
-			alerta.show();
+			Main.mostraAlerta("Não foi possível editar a mensagem", e.getMessage());
 		}
 	}
 	
@@ -67,10 +58,7 @@ public class HistoricoController {
 			try {
 				this.historicoDAO.deletarMensagem(mensagem.getDataTime());
 			} catch (SQLException e) {
-				Alert alerta = new Alert(AlertType.ERROR);
-				alerta.setTitle("Não foi possível apagar a mensagem");
-				alerta.setContentText(e.getMessage());
-				alerta.show();
+				Main.mostraAlerta("Não foi possível apagar a mensagem", e.getMessage());
 			}
 		}
 	}

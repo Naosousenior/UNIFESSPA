@@ -30,13 +30,17 @@ public class HistoricoDAO {
 	}
 	
 	public void salvaMensagens(List<Mensagem> mensagens) throws SQLException {
-		PreparedStatement stmt = ConexaoBD.prepareInstrucao("INSERT INTO Historico (texto, autor, horario) VALUES (?, ?, ?)");
+		PreparedStatement stmt = ConexaoBD.prepareInstrucao("INSERT INTO Historico (texto, autor, horario) VALUES (?, ?, ?);");
 		for (Mensagem m :mensagens) {
 			stmt.setString(1, m.getTexto());
             stmt.setString(2, m.getAutor());
             stmt.setString(3, m.getDataTime().format(this.formatador));
-            stmt.execute();
+            
+            stmt.addBatch();
 		}
+		
+		stmt.executeBatch();
+        stmt.close();
 		
 		System.out.println("Mensagens salvas");
 	}
@@ -54,19 +58,22 @@ public class HistoricoDAO {
 	}
 	
 	public List<Mensagem> carregarMensagens() throws SQLException {
-		ResultSet resultadoMensagens = ConexaoBD.queryInstrucao("SELECT texto, autor, horario FROM Historico ORDER BY horario");
+		PreparedStatement stmt = ConexaoBD.prepareInstrucao("SELECT texto, autor, horario FROM Historico ORDER BY horario;");
+		ResultSet resultadoMensagens = stmt.executeQuery();
 		
-		List<Mensagem> mensagens = new ArrayList<>();
+		List<Mensagem> mensagens = new ArrayList<Mensagem>();
 		
 		while (resultadoMensagens.next()) {
 			mensagens.add(
 					new MensagemUsuario(
 						resultadoMensagens.getString("autor"),
-						resultadoMensagens.getNString("texto"),
+						resultadoMensagens.getString("texto"),
 						LocalDateTime.parse(resultadoMensagens.getString("horario"), formatador)
 					)
 				);
 		}
+		
+		stmt.close();
 		
 		return mensagens;
 	}

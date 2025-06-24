@@ -7,7 +7,7 @@ public class Historico {
 	private List<Mensagem> mensagensSalvas;
 	private List<Mensagem> mensagensNovas;
 	
-	public Historico(Mensagem[] mensagens) {
+	public Historico(List<Mensagem> mensagens) {
 		this.mensagensSalvas = new ArrayList<Mensagem>();
 		this.mensagensNovas = new ArrayList<Mensagem>();
 		
@@ -49,12 +49,12 @@ public class Historico {
 	}
 	
 	public List<Mensagem> getUltimasMensagens(int pos) {
-		int length = this.mensagensSalvas.size();
-		if (length <= pos) {
-			return new ArrayList<Mensagem>();
+		int len = this.mensagensSalvas.size();
+		if (pos >= len) {
+			return this.mensagensSalvas;
 		}
 		
-		return this.mensagensSalvas.subList(pos, length-1);
+		return this.mensagensSalvas.subList(pos, len-1);
 	}
 	
 	public List<Mensagem> getNovasMensagens() {

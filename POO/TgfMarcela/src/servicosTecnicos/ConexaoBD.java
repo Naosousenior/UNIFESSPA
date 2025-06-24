@@ -25,8 +25,6 @@ public abstract class ConexaoBD {
     	st.close();
     }
     
-    
-    
     public static ResultSet queryInstrucao(String stmt) throws SQLException {
     	Statement st = banco.createStatement();
     	ResultSet rs = st.executeQuery(stmt);

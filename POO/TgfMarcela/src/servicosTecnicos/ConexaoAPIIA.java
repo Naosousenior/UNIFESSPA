@@ -38,7 +38,7 @@ public abstract class ConexaoAPIIA {
 		
 		//para preparar o contexto, primeiro eu informo a IA o que esta acontecendo
 		this.contexto.put(new JSONObject()
-				.put("role", "assistant")
+				.put("role", "user")
 				.put("content", "Você é um assistente digital"
 						+"que ajuda alunos a entenderem as funcionalidades da plataforma SIGAA da UNIFESSPA Marabá."
 						+" Para isto, utilize os dados a seguir"
@@ -54,7 +54,7 @@ public abstract class ConexaoAPIIA {
 		}
 		
 		this.contexto.put(new JSONObject()
-				.put("role", "assistant")
+				.put("role", "user")
 				.put("content", objetosContexto)
 			);
 	}
@@ -68,7 +68,7 @@ public abstract class ConexaoAPIIA {
 	 * faz a requisicao HTTP para a API
 	 * e retorna em texto o resultado da IA
 	 */
-	protected String fazRequisicao(JSONObject data) throws IOException,InterruptedException {
+	protected JSONObject fazRequisicao(JSONObject data) throws IOException,InterruptedException {
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(this.URL)
 				.header("Authorization", "Bearer " + API_KEY)
@@ -80,11 +80,7 @@ public abstract class ConexaoAPIIA {
         if (resposta.statusCode() != 200) {
     		throw new RuntimeException("Erro na requisição: " + resposta.statusCode() + " - " + resposta.body());
 		} else {
-			return new JSONObject(resposta.body())
-					.getJSONArray("choices")
-                    .getJSONObject(0)
-                    .getJSONObject("message")
-                    .get("content").toString();
+			return new JSONObject(resposta.body());
         }
 	}
 }

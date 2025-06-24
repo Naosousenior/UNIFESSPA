@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,6 +56,17 @@ public class RespostaProntas extends HashMap<String,String> implements Conversan
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Vector<String> getPerguntasProntas() {
+		Vector<String> resultado = new Vector<String>(this.size());
+		Set<String> chaves = this.keySet();
+		
+		for(String s :chaves) {
+			resultado.add(s);
+		}
+		
+		return resultado;
 	}
 }
 

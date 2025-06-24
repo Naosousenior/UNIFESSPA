@@ -1,6 +1,9 @@
 package dominio;
 
+import java.util.List;
 import java.util.Vector;
+
+import app.Main;
 
 public class Conversa {
 	private HistoricoController historicoConversa;
@@ -16,6 +19,11 @@ public class Conversa {
 		this.conversante = conversante;
 	}
 	
+	/*
+	 * Esta funcao guarda duas funcoes dentro de si
+	 * se a opcao de apagar a mensagem estiver habilidata, esta acao era feita
+	 * caso contrario, a mensagem sera simplesmente editada
+	 */
 	public void manipulaMensagem(Mensagem m,boolean apagar,String texto) {
 		if (apagar) {
 			this.historicoConversa.apagarMensagem(m);
@@ -25,5 +33,24 @@ public class Conversa {
 		}
 	}
 	
+	public Mensagem enviaMensagem(Mensagem mensagem) {
+		this.historicoConversa.addMensagem(mensagem);
+		try {
+			String resposta = this.conversante.responder(mensagem.prepareTexto());
+			return new MensagemTexto("IA", resposta);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Main.mostraAlerta("Erro ao enviar mensagem", e.getMessage());
+		}
+		
+		return null;
+	}
 	
+	public List<String> getPerguntasProntas() {
+		return this.perguntasProntas;
+	}
+	
+	public List<Mensagem> getUltimasMensagens() {
+		return this.historicoConversa.getMensagensAntigas();
+	}
 }

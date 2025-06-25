@@ -46,6 +46,10 @@ public class Conversa {
 		return null;
 	}
 	
+	public void salvarMensagens() {
+		this.historicoConversa.salvarNovasMensagens();
+	}
+	
 	public Vector<String> getPerguntasProntas() {
 		return this.perguntasProntas;
 	}

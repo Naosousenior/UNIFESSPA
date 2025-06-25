@@ -32,6 +32,8 @@ public class Main extends Application {
 		alerta.show();
 	}
 	
+	
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
@@ -40,6 +42,11 @@ public class Main extends Application {
 		
 		Conversa conversa = new Conversa(respostas.getPerguntasProntas());
 		conversa.setConversante(respostas);
+		
+		stage.setOnCloseRequest(e -> {
+			ConexaoBD.fechaConexao();
+			conversa.salvarMensagens();
+		});
 		
 		TelaPrincipal tela = new TelaPrincipal(conversa);
 		Scene scene = new Scene(tela,600,400);

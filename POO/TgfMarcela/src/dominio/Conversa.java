@@ -37,7 +37,9 @@ public class Conversa {
 		this.historicoConversa.addMensagem(mensagem);
 		try {
 			String resposta = this.conversante.responder(mensagem.prepareTexto());
-			return new MensagemTexto("IA", resposta);
+			Mensagem resultado = new MensagemTexto("IA", resposta);
+			this.historicoConversa.addMensagem(resultado);
+			return resultado;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			Main.mostraAlerta("Erro ao enviar mensagem", e.getMessage());

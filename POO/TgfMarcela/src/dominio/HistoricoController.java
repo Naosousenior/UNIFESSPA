@@ -35,6 +35,7 @@ public class HistoricoController {
 		try {
 			this.historicoDAO.salvaMensagens(novasMensagens);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			Main.finalizarPrograma("Problemas com o banco de dados", e.getMessage());
 		}
 	}

@@ -44,8 +44,8 @@ public class Main extends Application {
 		conversa.setConversante(respostas);
 		
 		stage.setOnCloseRequest(e -> {
-			ConexaoBD.fechaConexao();
 			conversa.salvarMensagens();
+			ConexaoBD.fechaConexao();
 		});
 		
 		TelaPrincipal tela = new TelaPrincipal(conversa);

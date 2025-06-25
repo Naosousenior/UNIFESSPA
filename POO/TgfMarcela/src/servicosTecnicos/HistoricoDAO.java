@@ -31,7 +31,8 @@ public class HistoricoDAO {
 	
 	public void salvaMensagens(List<Mensagem> mensagens) throws SQLException {
 		PreparedStatement stmt = ConexaoBD.prepareInstrucao("INSERT INTO Historico (texto, autor, horario) VALUES (?, ?, ?);");
-		for (Mensagem m :mensagens) {
+		
+		for (Mensagem m: mensagens) {
 			stmt.setString(1, m.getTexto());
             stmt.setString(2, m.getAutor());
             stmt.setString(3, m.getDataTime().format(this.formatador));

@@ -21,9 +21,10 @@ public class MensagemCarregando extends MensagemUI {
     private Timeline animacao;
     
     public MensagemCarregando() {
-        super(new MensagemTexto("Aborora","                  ",null));
+        super(null,new MensagemTexto("Aborora","                  ",null));
         setCor(COR_PADRAO);
         criarAnimacao();
+        this.setOnMouseClicked(null);
     }
     
     private void criarAnimacao() {

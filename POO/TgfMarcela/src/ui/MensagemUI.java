@@ -20,8 +20,26 @@ public class MensagemUI extends StackPane {
 	
 	private Mensagem mensagem;
 	
+	public MensagemUI(MenuOpcoesMensagem menu,Mensagem mensagem) {
+		this.mensagem = mensagem;
+		this.menu = menu;
+		
+		criarComponentes();
+		configurarEventos();
+		getChildren().addAll(balao, textoLabel);
+		setStyle("-fx-padding: 0 0 10 0;");
+		
+		this.setTexto(mensagem.getTexto());
+		if(mensagem.getAutor().equals("IA")) {
+			this.setCor(Color.MEDIUMSEAGREEN);
+		} else {
+			this.setCor(Color.MEDIUMSLATEBLUE);
+		}
+	}
+	
 	public MensagemUI(Mensagem mensagem) {
 		this.mensagem = mensagem;
+		this.menu = new MenuOpcoesMensagem(null);
 		
 		criarComponentes();
 		configurarEventos();
@@ -37,11 +55,10 @@ public class MensagemUI extends StackPane {
 	}
 	
 	private void criarComponentes() {
-		this.menu = new MenuOpcoesMensagem(this.mensagem);
-		
 		textoLabel = new Label();
 		textoLabel.setWrapText(true);
 		textoLabel.setMaxWidth(300);
+		textoLabel.setMaxHeight(Double.MAX_VALUE);
 		textoLabel.setPadding(new Insets(5));
 		textoLabel.setAlignment(Pos.TOP_LEFT);
 		
@@ -54,10 +71,14 @@ public class MensagemUI extends StackPane {
 		balao = new Pane();
 		balao.setBackground(new Background(new BackgroundFill(cor, new CornerRadii(10), null)));
 		balao.setEffect(new DropShadow(5, Color.GRAY));
+		balao.setMaxSize(300, Double.MAX_VALUE);
+		
+		setMaxHeight(Double.MAX_VALUE);
 	}
 	
 	private void configurarEventos() {
 		setOnMouseClicked(event -> {
+			menu.setMensagem(this, this.mensagem);
 			menu.show(this,event.getScreenX(),event.getScreenY());
 			});
 	    
@@ -76,11 +97,34 @@ public class MensagemUI extends StackPane {
 	}
 	
 	public void setTexto(String texto) {
-		textoLabel.setText(texto);
+		if (texto == null) {
+			return;
+		}
+		
+		// TODO Auto-generated method stub
+		char[] caracteres = new char[texto.length()];
+		
+		int char_line = 0; 
+		for(int i = 0; i<texto.length();i++) {
+			if (texto.charAt(i) == ' ' && char_line > 40) {
+				caracteres[i] = '\n';
+				char_line = 0;
+				continue;
+			}
+			
+			if(texto.charAt(i) == '\n') {
+				char_line = -1;
+			}
+			
+			caracteres[i] = texto.charAt(i);
+			char_line ++;
+		}
+		
+		textoLabel.setText(new String(caracteres));
 	}
 	
 	public String getTexto() {
-		return textoLabel.getText();
+		return mensagem.getTexto();
 	}
 	
 	@Override
@@ -90,10 +134,9 @@ public class MensagemUI extends StackPane {
 	    textoLabel.layout();
 	    
 	    double width = textoLabel.prefWidth(-1) + 20;
-	    double height = textoLabel.prefHeight(width) + 20;
+	    double height = textoLabel.prefHeight(width) + 10;
 	        
 		balao.setMinSize(width, height);
 		balao.setPrefSize(width, height);
-		balao.setMaxSize(width, height);
 	}
 }

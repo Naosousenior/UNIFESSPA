@@ -46,7 +46,7 @@ public class Conversa {
 		return null;
 	}
 	
-	public List<String> getPerguntasProntas() {
+	public Vector<String> getPerguntasProntas() {
 		return this.perguntasProntas;
 	}
 	

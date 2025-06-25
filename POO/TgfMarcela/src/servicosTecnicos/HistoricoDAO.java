@@ -52,7 +52,7 @@ public class HistoricoDAO {
 	}
 	
 	public void atualizarMensagem(LocalDateTime momento,String novoTexto) throws SQLException {
-		String sql = "UPDATE Historico SET texto = '%s' WHERE momento = '%s'".formatted(novoTexto,momento.format(formatador));
+		String sql = "UPDATE Historico SET texto = '%s' WHERE horario = '%s'".formatted(novoTexto,momento.format(formatador));
 		
 		ConexaoBD.executeInstrucao(sql);
 	}

@@ -42,24 +42,38 @@ public class TelaPrincipal extends VBox {
 		
 		//agora vamos ter os componentes da barra de baixo:
 		TextField inputText = new TextField();
-		Button botao = new Button("Enviar");
+		Button botao2 = new Button("Enviar");
+		Button botao1 = new Button("Perguntas Frequentes");
+		
+		//por fim, crio o menu de perguntas prontas
+		MenuOpcoesProntas opcoes = this.conversaui.getMenuPerguntasProntas(inputText);
+		botao1.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent e) {
+				// TODO Auto-generated method stub
+				opcoes.show(botao1,botao1.getHeight(),botao2.getWidth());
+			}
+		});
 		
 		HBox.setHgrow(inputText, Priority.ALWAYS);
-		botao.setOnAction(new EventHandler<ActionEvent>() {
+		botao2.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				System.out.println(inputText.getText());
 				if(conversaui.enviarMensagem(inputText.getText())) {
 					inputText.setText("");
 				}
 			}
 		});
-		botao.setMaxWidth(Double.MAX_VALUE);
+		botao1.setMaxWidth(Double.MAX_VALUE);
+		botao2.setMaxWidth(Double.MAX_VALUE);
 		
 		this.getChildren().addAll(
 				new ToolBar(choice),
 				this.conversaui,
-				new ToolBar(inputText,botao)
+				new ToolBar(botao1,inputText,botao2)
 			);
 	}
 }

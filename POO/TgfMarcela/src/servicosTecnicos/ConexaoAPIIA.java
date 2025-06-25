@@ -39,9 +39,9 @@ public abstract class ConexaoAPIIA {
 		//para preparar o contexto, primeiro eu informo a IA o que esta acontecendo
 		this.contexto.put(new JSONObject()
 				.put("role", "user")
-				.put("content", "Você é um assistente digital"
-						+"que ajuda alunos a entenderem as funcionalidades da plataforma SIGAA da UNIFESSPA Marabá."
-						+" Para isto, utilize os dados a seguir"
+				.put("content", "Você é um assistente digital "
+						+"que ajuda alunos a entenderem as funcionalidades da plataforma SIGAA da UNIFESSPA Marabá. "
+						+" Para isto, utilize os dados a seguir: "
 						)
 			);
 		

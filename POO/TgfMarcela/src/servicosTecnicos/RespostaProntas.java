@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
@@ -23,6 +22,7 @@ public class RespostaProntas extends HashMap<String,String> implements Conversan
 	@Override
 	public String responder(String texto) throws Exception {
 		// TODO Auto-generated method stub
+		texto = texto.replaceAll("Com base em todos os dados, apenas resposta o texto:\\n\\n ", "");
 		return this.get(texto);
 	}
 	

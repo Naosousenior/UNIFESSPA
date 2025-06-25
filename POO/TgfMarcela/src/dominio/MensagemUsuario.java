@@ -15,7 +15,7 @@ public class MensagemUsuario extends Mensagem {
 	@Override
 	public String prepareTexto() {
 		// TODO Auto-generated method stub
-		return "Com base em todos os dados, resposta o texto:\n\n %s".formatted(this.autor,this.texto);
+		return "Com base em todos os dados, apenas resposta o texto:\n\n %s".formatted(this.texto);
 	}
 
 }

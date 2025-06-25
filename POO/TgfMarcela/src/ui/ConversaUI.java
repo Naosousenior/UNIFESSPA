@@ -18,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import servicosTecnicos.ChatGPT;
@@ -34,8 +35,11 @@ public class ConversaUI extends ScrollPane {
     private HBox containerAnimacao = new HBox();
     private boolean esperandoMensagem = false;
     
+    private MenuOpcoesMensagem menuOpcoes;
+    
     public ConversaUI(Conversa conversa) {
     	this.conversa = conversa;
+    	this.menuOpcoes  = new MenuOpcoesMensagem(conversa);
     	
         contentBox = new VBox(10);
         contentBox.setPadding(new Insets(10));
@@ -61,7 +65,7 @@ public class ConversaUI extends ScrollPane {
     	for (Mensagem m :ultimasMensagens) {
     		boolean alinhamento = !m.getAutor().equals("IA");
     		
-    		addMensagem(new MensagemUI(m),alinhamento);
+    		addMensagem(new MensagemUI(this.menuOpcoes,m),alinhamento);
     	}
     }
     
@@ -84,7 +88,7 @@ public class ConversaUI extends ScrollPane {
     		return false;
     	}
     	Mensagem mensagem = new MensagemUsuario("Usuario", texto);
-    	this.addMensagem(new MensagemUI(mensagem), true);
+    	this.addMensagem(new MensagemUI(this.menuOpcoes,mensagem), true);
     	this.mostrarMensagemCarregando();
     	
     	Task<Mensagem> tarefa = new Task<Mensagem>() {
@@ -97,10 +101,12 @@ public class ConversaUI extends ScrollPane {
 		};
 		
 		tarefa.setOnFailed(e -> {
+			System.out.println("Ocorreu um problema:");
+			System.out.println(tarefa.getException().getMessage());
 			pararAnimacao();
 		});
 		tarefa.setOnSucceeded(e -> {
-			addMensagem(new MensagemUI(tarefa.getValue()), false);
+			addMensagem(new MensagemUI(menuOpcoes,tarefa.getValue()), false);
 			pararAnimacao();
 		});
 		
@@ -180,6 +186,10 @@ public class ConversaUI extends ScrollPane {
     	} catch (Exception e) {
     		Main.mostraAlerta("Erro ao conectar.", e.getMessage());
     	}
+    }
+    
+    public MenuOpcoesProntas getMenuPerguntasProntas(TextField field) {
+    	return new MenuOpcoesProntas(this.conversa.getPerguntasProntas(), field);
     }
 }
 

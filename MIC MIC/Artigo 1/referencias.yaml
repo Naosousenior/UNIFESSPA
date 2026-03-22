@@ -1,0 +1,54 @@
+rosaneguse:
+  type: Web
+  title: "O que é Circuito Integrado: funcionamento, tipos e aplicações"
+  author: ["Guse, Rosana","Maker Hero"]
+  date: 2024-04-23
+  url: {
+    value: "https://www.makerhero.com/guia/componentes-eletronicos/circuito-integrado/",
+    date: 2026-03-20
+  }
+
+ci-synopsis:
+  type: Web
+  title: "What is an Integrated Circuit (IC)?"
+  author: ["Blommestein, Rob van", "Vishwakarma, Sumit"]
+  date: 2025-08-01
+  url: {
+    value: "https://www.synopsys.com/glossary/what-is-integrated-circuit.html",
+    date: 2026-03-20
+  }
+
+curso-eletronica:
+  type: Article
+  title: "FAMÍLIAS E TECNOLOGIAS DIGITAIS - Disciplina de Digital 2"
+  author: ["Schneider, Fábio Kurt","Schneider Jr, Bertoldo"]
+  url: {
+    value: "http://paginapessoal.utfpr.edu.br/fabioks/disciplinas/tecnico-integrado/el04e-eln-digital-1/el04e-eletronica-digital-1-tecnico-integrado/aulas/Familias-Digitais_Bertoldo_Fabio_Schneider.pdf",
+    date: 2026-03-20
+  }
+
+sistemas-digitais:
+  type: Book
+  title: "Sistemas Digitais: Príncipios e Aplicações"
+  author: ["Tocci, Ronald J.", "Widmer, Neal S.", "Moss, Gregory L."]
+  date: 2011
+  publisher:
+    name: "Pearson Prentice Hall"
+    location: "São Paulo"
+  edition: 11
+  location: "São Paulo"
+  chapter: 8
+  language: "pt-br"
+
+microeletronica:
+  type: Book
+  title: "Microeletrônica"
+  author: ["Sedra, Adel S.", "Smith, Kenneth C."]
+  date: 2000
+  publisher:
+    name: "Pearson Education"
+    location: "São Paulo"
+  edition: 5
+  location: "São Paulo"
+  chapter: 4
+  language: "pt-br"

@@ -9,18 +9,22 @@
   spacing: 1em,
   justify: true
 )
+
 #set page(paper: "a4")
+
 #show heading: self => [
   #self
   #v(15pt)
 ]
+
+
 
 #align(
   center,
   [
     #text(size: 16pt)[
       #box(
-        image("images/brasao_republica.png"),
+        image("images/unifesspa_logo.png"),
         height: 4cm,
       )
 
@@ -55,7 +59,7 @@
 )
 
 #align(center)[
-  #v(2cm)
+  #v(3.4cm)
   2026
 
   Marabá-PA
@@ -64,4 +68,4 @@
 
 = Introdução
 
-Os dispositovos #lorem(50)
+Circuitos integrados são 

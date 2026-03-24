@@ -67,7 +67,7 @@
 
 = Introdução
 
-Circuitos integrados são mecanismos com complexos circuitos eletrônicos compostos por um substrato semicondutor (geralmente silício),
+Circuitos integrados são mecanismos eletrônicos complexos compostos por um substrato semicondutor (geralmente silício),
 e encapsulados por um material isolante, com alguns contatos externos @rosaneguse.
 CIs, também comumente chamados de chips ou microchips @rosaneguse, estão atualmente presentes em todo tipo de dispositivo com qualquer
 resquício de energia elétrica, como brinquedos infantis, carros, computadores, telefones celulares, naves espaciais,
@@ -108,17 +108,64 @@ Em ambos os casos, os três terminais do transistor são @microeletronica:
 + *Emissor*: O terminal por onde a corrente sai do transistor.
 + *Base*: O terminal que funciona como chave, abrindo ou fechando o fluxo de corrente entre coletor e emissor.
 
+#figure(
+  image(
+    "images/transistor_bipolar.png",
+    height: 10em
+  ),
+  
+  caption: [
+    #text(size: 10pt)[Estrutura de um transistor bipolar de junção _npn_. Fonte: #cite(<microeletronica>,form: "prose")]
+  ]
+)
+
 Entretanto, o funcionamento dos terminais difere do transistor _npn_ para o _pnp_. No caso do _npn_, para que haja fluxo de corrente, deve haver uma injeção de corrente na base do transistor, fazendo com que a energia flua do coletor para o emissor. No transistor _pnp_, por outro lado, que funciona com lacunas, a
 corrente flui do emissor para o coletor, e para que haja essa corrente, deve haver uma drenagem de corrente na base @microeletronica.
 
 == Tecnologia MOS
 
+De acordo com #cite(<sistemas-digitais>, form: "prose"), a sigla MOS significa _metal-oxide-semicondutor_, ou metal óxido semicondutor, uma tecnologia que
+consiste em um eletrodo de metal que produz um _campo elétrico_ que influência na resistência de um substrato semicondutor, que permite ou não a passagem de energia, o que permite a construção de transistores chamados *MOSFETs*, Transistores de Efeito de Campo Semicondutor de Óxido Metálico @emily-johnson.
 
+#figure(
+  image(
+    "images/transistor-mosfet.webp",
+    height: 10em
+  ),
+  caption: [
+    #text(size: 10pt)[Estrutura de um transistor MOSFET de canal N. Fonte: #cite(<emily-johnson>, form: "prose")]
+  ]
+) <figura-mosfet>
+
+Conforme vemos na @figura-mosfet, o MOSFET possui uma _porta_ (Gate), um _dreno_ (Drain) e uma _fonte_ (Source). Observe que a fonte e o dreno estão conectados
+por uma linha tracejada, indicando que normalmente não há passagem de corrente direta entre eles, e observe também que a porta está separada  dos demais
+terminais, indicando que há uma alta resistência entre ela e o substrato @sistemas-digitais.
+
+Aplicando uma tensão positiva da porta para a fonte, o campo elétrico produzido pela porta reduz a resistência do substrato semicondutor, permitindo assim que
+haja uma passagem de corrente entre o dreno e a fonte @sistemas-digitais.
+
+Ainda de acordo com #cite(<sistemas-digitais>, form: "prose"), a tecnologia MOS possui vantagem em relação a transistores bipolares nos quesitos custo de
+fabricação, custo de potência e miniaturização, ou seja, chips feitos com a tecnologia MOS são mais baratos, consomem menos energia, dissipam menos calor e
+possuem uma maior quantidade de componentes por espaço. Por outro lado, chips MOS são extremamente sensíveis a eletrecidade estática, o que os torna menos duráveis e confiáveis.
 
 = Família lógica TTL
 
+A família _Transistor-Transistor Logic_ é fabricada a mais de 60 anos, estando presente no mercado eletrônico até os dias de hoje, apesar de ter entrado em
+declinio e atualmente ser mais utilizada para fins acadêmicos. Seu circuito digital principal consiste na porta NAND, demonstrado em @figura-nand.
 
+#figure(
+  image(
+    "images/nand-ttl.png",
+    height: 20em
+  ),
+  caption: [
+    #text(size: 10pt)[Circuito NAND de um circuito TTL]
+  ]
+)<figura-nand>
 
+Algumas características dos circuitos TTL 
+
+#pagebreak()
 
 #bibliography(
   "referencias.yaml",

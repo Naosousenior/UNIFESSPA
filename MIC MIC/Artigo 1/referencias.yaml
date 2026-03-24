@@ -27,6 +27,16 @@ curso-eletronica:
     date: 2026-03-20
   }
 
+emily-johnson:
+  type: Web
+  title: "Símbolos MOSFET | Um Guia para Iniciantes"
+  author: ["Johnson, Emily"]
+  date: 2025-06-03
+  url: {
+    value: "https://www.pcbasic.com/pt/blog/mosfet_symbols.html",
+    date: 2026-03-21
+  }
+
 sistemas-digitais:
   type: Book
   title: "Sistemas Digitais: Príncipios e Aplicações"
@@ -50,5 +60,4 @@ microeletronica:
     location: "São Paulo"
   edition: 5
   location: "São Paulo"
-  chapter: 4
   language: "pt-br"

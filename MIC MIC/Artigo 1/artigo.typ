@@ -65,6 +65,10 @@
 ]
 #pagebreak()
 
+#outline()
+
+#pagebreak()
+
 = Introdução
 
 Circuitos integrados são mecanismos eletrônicos complexos compostos por um substrato semicondutor (geralmente silício),
@@ -159,11 +163,53 @@ declinio e atualmente ser mais utilizada para fins acadêmicos. Seu circuito dig
     height: 20em
   ),
   caption: [
-    #text(size: 10pt)[Circuito NAND de um circuito TTL]
+    #text(size: 10pt)[Circuito NAND de um circuito TTL. Fonte: #cite(<sistemas-digitais>,form: "prose")]
   ]
 )<figura-nand>
 
-Algumas características dos circuitos TTL 
+Uma característica notável dos circuitos TTL, é o fato de que portas desconectadas possuem o valor lógico 1, devido a natureza do transistor bipolar, e nestes
+casos, diz-se que a porta em questão está *flutuando* @sistemas-digitais.
+
+A família TTL possui duas séries principais, a série 74 e a série 54. Segundo #cite(<sistemas-digitais>,form: "prose"), ambas as séries suportam uma
+tensão de 4,5 a 5,5 V, porém, a série 74 é mais sensível a temperatura, suportando de 0 a 70º C, enquanto a série 54 suporta de -55º a 125º C. As tensões máximas
+suportadas são +7 V e -0,5 V.
+
+Conforme mostra na @figura-tabela-ttl, o _fan-out_ da série TTL é baixo, sendo de apenas 10 para a série 74, e de no máximo 40 na série 74AS. Também é possível
+observar que a série 74ALS é a que possui as melhores estatísticas, com um dos menores atrasos e menor dissipação de potência, mas com um _fan-out_ e taxa de clock razoáveis em comparação com as demais séries.
+
+#figure(
+  image("images/tabela-ttl.png"),
+  caption: [
+    #text(size: 10pt)[Recorte de uma tabela de #cite(<sistemas-digitais>,form: "prose")]
+  ]
+)<figura-tabela-ttl>
+
+= Família lógica CMOS
+
+A família CMOS é a base da eletrônica digital moderna, com algumas de suas séries compatíveis com a família TTL, mas apresentando melhor possibilidade de compressão, menor dissipação de potência e fabricação mais barata @sistemas-digitais.
+
+Quanto a dissipação de potência, os circuitos CMOS possuem um consumo despresível quando não há comutação, ou seja, quando o estado lógico das portas não muda,
+o que é um dos motivos para apresentarem uma boa eficiência energética. Por outro lado, quanto maior a frequência do circuito, mais comutações ele faz, e
+consequentemente, mais ele consome potência @sistemas-digitais.
+
+De acordo com #cite(<sistemas-digitais>, form: "prose"), o _fan-out_ dos circuitos CMOS é limitado pela atraso de propagação máximo, o que significa que, quanto
+maior o fan-out, menor é a velocidade da porta. Por este motivo, na prática, o _fan-out_ costuma ser limitado a 50 para circutos com frequência menor que 50 MHz.
+
+Porém, também é importante notar que os chips CMOS são extremamente sensíveis, em comparação com a família TTL. Na família CMOS, entradas não conectadas são
+suscetíveis a interferências e ruído, podendo resultar em um pequeno curto-circuito. Também é importante notar que os circuitos CMOS são mais vulneráveis
+a eletrecidade estática, uma vez que a camada de óxido semicondutor pode não suportar a diferença de potencial que uma carga estática consegue gerar
+@sistemas-digitais.
+
+A partir da família CMOS, surgiu também a família BicMOS, uma família de chips que combinam a alta velocidade dos transistores bipolares com a baixa dissipação
+da família BicMOS, obtendo o melhor dos dois mundos. Além disso, a família BicMOS é compatível pino a pino com a família TTL padrão, aumentando as possibilidades
+de projetos de circuitos @sistemas-digitais.
+
+= Conclusão
+
+As diferentes famílias lógicas atendem a diferentes mercados, porém, é inegável as vantagens que a família CMOS e sua filha, BicMOS, trouxeram para o mercado.
+A possibilidade de criar chips com menor consumo, em menos espaço, e de forma mais barata é simplesmente muito tentadora para o mercado, que abraçou a família
+CMOS em todo lugar que ela pode ser inserida. Ainda assim, a tecnologia de transistores bipolares e a família TTL não perderam seu valor, ainda sendo
+largamente utilizadas em contextos que requerem mais segurança, maior velocidade ou maior robustez. Cada tecnologia eletrônica atende ao seu mercado.
 
 #pagebreak()
 

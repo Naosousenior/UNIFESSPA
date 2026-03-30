@@ -9,9 +9,9 @@
   spacing: 1em,
   justify: true
 )
-
 #set page(paper: "a4")
 #set list(indent: 3em)
+#set heading(numbering: "1.")
 
 #show heading: self => [
   #self

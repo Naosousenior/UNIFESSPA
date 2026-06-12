@@ -1,0 +1,93 @@
+Crie três arquivos: main.py, processador.py, memoria.py e processo.py, eles guardaram classes de um projeto em Python
+
+No arquivo processo.py, crie a classe Processo, com as seguintes especificações:
+
+ - Um atributo privado, chamado tempo_total, do tipo int, que indica o tempo que aquele processo levará para ser executado.
+ - Um construtor que recebe como argumento um valor para o atributo tempo_total.
+ - Um método público consumir_quantum, que decrementa o valor de tempo_total em um, e não retorna nada.
+ - Um método público verificar_tempo, que returna o valor de tempo_total.
+
+
+Crie uma classe Memoria com as seguintes especificações:
+ - um atributo privado procs_execucao que é uma lista de objetos Processo
+ - um atributo privado procs_finalizados que é uma lista de objetos Processo
+ - um método publico chamado prox_processo, que retorna e remove o primeiro item de procs_execucao
+ - um método publico chamado add_processo, que recebe como argumento um objeto Processo e adiciona ele ao final de procs_execucao
+ - um método publico chamado add_processo_finalizado, que recebe como argumento um objeto Processo e adiciona ele no final de procs_finalizados
+
+Envie apenas o código, sem introdução ou conclusão
+
+Crie uma classe Processador com as seguintes especificações:
+ - um atributo privado chamado quantum, do tipo int
+ - um atributo privado chamado memoria, do tipo Memoria
+ - um atributo privado chamado esta_executando, do tipo bool
+ - um atributo privado chamado processo_atual, do tipo Processo
+ - um atributo publico chamado on_context, do tipo function(Processo)
+ - um construtor, que recebe argumentos para serem passados para os atributos quantum, memoria e on_context. Além disso, o construtor deve iniciar o método round_robin de forma assíncrona.
+ - um metodo privado chamado finalizar_quantum, que segue a seguinte sequencia de passos:
+  1. Verifica se o tempo_total de processo_atual chegou a 0, se sim, manda processo_atual para procs_finalizados de memoria, senão, manda processo_atual para procs_execucao de memoria
+  2. pega em memoria o proximo processo com prox_processo, e atribui ele a processo_atual
+  3. chama on_context com processo_atual como argumento
+ - um metodo privado chaamdo round_robin, que executa o seguinte loop enquanto esta_executando é verdadeiro:
+  1. espera uma quantidade de tempo igual a quantum em segundos
+  2. Chama finalizar_quantum.
+ - um método público chamado start, pega em memoria o proximo processo com prox_processo, e atribui ele a processo_atual, em seguida muda o valor de esta_executando para true e chama on_context passado como argumento processo_atual.
+ - um método público set_quantum, que recebe como argumento um int e o atribui para quantum
+ - um método pause, que muda o valor de esta_executando para false
+
+Agora, resuma as classes que você implementou, descrevendo de forma resumida o que os atributos ou métodos publicos dela fazem, como se fosse um manual de acesso rápido para outra pessoa.
+
+
+Você desenvolverá a interface gráfica de um sistema que simula a execução de um algorítmo round-robin.
+Aqui está uma descrição das classes 'Processo', 'Memoria' e 'Processador', que compõem a lógica do sistema:
+
+Classe Processo
+Atributos:
+- tempo_total (privado): Um inteiro que representa o tempo restante para a execução do processo.
+- nome: Uma string com o nome do processo.
+
+Métodos Públicos:
+- consumir_quantum(quantum): Diminui o valor de 'tempo_total' no quantum especificado, representando o uso de um quantum de tempo.
+- verificar_tempo(): Retorna o valor atual de 'tempo_total'.
+
+ Classe Memoria
+Atributos:
+- procs_execucao (privado): Uma lista que armazena objetos Processo, representando os processos que estão em execução.
+- procs_finalizados (privado): Uma lista que armazena objetos Processo, representando os processos que foram finalizados.
+
+Métodos Públicos:
+- prox_processo(): Remove e retorna o primeiro objeto Processo da lista 'procs_execucao'. Se a lista estiver vazia, retorna 'None'.
+- add_processo(processo): Adiciona um objeto Processo à lista 'procs_execucao' no final.
+- add_processo_finalizado(processo): Adiciona um objeto Processo à lista 'procs_finalizados' no final.
+
+ Classe Processador
+Atributos:
+- quantum (privado): Um inteiro que define o quantum de tempo para cada execução do processo.
+- memoria (privado): Um objeto Memoria, usado para gerenciar os processos.
+- esta_executando (privado): Um booleano que indica se o processador está atualmente em execução.
+- processo_atual (privado): Um objeto Processo que representa o processo que está sendo executado no momento.
+- on_context (publico): Uma função callback que recebe um objeto Processo como argumento e é chamada quando o contexto do processo muda.
+
+Métodos Públicos:
+- iniciar(): Inicia a execução do próximo processo na lista 'procs_execucao' ou, se nenhum estiver disponível, não faz nada. Define 'esta_executando' como verdadeiro e chama 'on_context' com o processo atual.
+- set_quantum(quantum): Atribui um novo valor ao atributo 'quantum'.
+- pausar(): Define 'esta_executando' como falso, interrompendo a execução do processador.
+
+Essas classes são projetadas para trabalhar em conjunto, com o Processador gerenciando e executando processos de acordo com um algoritmo Round Robin baseado no quantum definido. A Memoria fornece uma camada intermediária para armazenar e gerenciar os processos, enquanto o Processo define a estrutura básica dos dados do processo em si.
+
+Usando a linguagem Python e a biblioteca de interface gráfica Tkinter, cria uma aplicação com as seguintes especificações:
+Uma barra de ferramentas com os botões:
+- 'Novo processo': ao clicar neste botão, uma nova janela é aberta, onde o usuário poderá criar um novo processo informando o nome dele e a quantidade de tempo que o processo levará para ser concluído. Depois, adicionará o processo recém criado na fila da memória
+- 'Iniciar': chamará o método 'iniciar' do processador.
+- 'Pausar': chamará o método 'pause' do processador.
+- 'Excluir processo': abre uma nova janela que permite deletar um processo da memória.
+
+Do lado esquerdo, a simulação poderá ser visualizada. Você usará um componente visual para representar o Processador e outro para representar a Memória. A barra de ferramentas deve estar acima desses componentes.
+O componente visual da memória deverá mostrar as duas filas, de processos finalizados e processos em execução.
+O componente visual do processador deve exibir o nome do processo que está atualmente no processador. Para obter essa informação, use a função 'on_context' do objeto processador.
+Faça apenas o código final, sem introdução ou conclusão.
+
+
+Faça uma interface gráfica em Python com Tkinter, com as seguintes especificações:
+- Do lado direito, uma barra de ferramentas com os seguintes botões: "Novo processo", "Iniciar", "Pausar", "Excluir processo", "Configurações".
+- Do lado esquerdo, dois campos dividindo igualmente o espaço vertical, em cima um componente com o texto processador, e embaixo um componente com o texto memória.

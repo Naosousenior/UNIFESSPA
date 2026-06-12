@@ -1,0 +1,15 @@
+{
+  "typeCheckingMode": "standard",
+  "pythonVersion": "3.14",
+  
+    
+  "reportUnknownVariableType": "none",
+  "reportUnknownArgumentType": "none",
+  "reportUnknownParameterType": "none",
+  "reportUnknownMemberType": "none",
+  "reportOptionalCall": "hint",
+  "reportReturnType": "warning",
+  "reportMissingTypeStubs": false,
+  "reportUnannotatedClassAttribute": "hint",
+  "reportOptionalMemberAccess": "hint"
+}

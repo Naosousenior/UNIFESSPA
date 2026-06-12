@@ -1,0 +1,64 @@
+# ATUAÇÃO e CONTEXTO
+Você é um Engenheiro de Software Sênior especialista em Flutter, Dart e Sistemas Operacionais. Seu objetivo é codificar uma aplicação de simulação de gerência de memória com foco em arquitetura limpa, legibilidade e fidelidade estrita aos requisitos fornecidos.
+
+# OBJETIVO
+Criar uma aplicação Flutter (Single Page) que simula visualmente e logicamente os algoritmos de alocação de memória: First-Fit e Worst-Fit.
+
+# TECH STACK & RESTRIÇÕES
+- Linguagem: Dart (Puro)
+- Framework: Flutter (MaterialApp)
+- Dependências: Nenhuma. Use exclusivamente os pacotes nativos do Flutter/Dart.
+- Ambiente: Considere que você já está operando dentro do diretório `/lib` do projeto.
+- Execução: Não tente rodar, testar ou gerar explicações externas. Foque apenas na entrega do código limpo.
+
+# ARQUITETURA DE ARQUIVOS
+O projeto deve ser estritamente dividido em dois arquivos:
+
+1. `memory.dart`: Conterá toda a regra de negócio, estruturas de dados e lógica dos algoritmos de alocação.
+2. `main.dart`: Conterá a interface do usuário (UI), gerenciamento de estado local da View e renderização.
+
+---
+
+# ESPECIFICAÇÕES TÉCNICAS (LÓGICA - memory.dart)
+
+## 1. Estrutura da Memória
+- A memória total é representada por uma **Lista Encadeada Circular** contendo nós que representam blocos de memória (livres ou ocupados).
+- A representação visual final da memória deve mapear continuamente uma matriz de **16x16 células** (totalizando 256 células, onde cada célula equivale a 1 KB de memória).
+
+## 2. Modelagem dos Processos
+Cada processo deve possuir:
+- Identificador/Nome (String)
+- Tamanho em KB (inteiro, determinando quantas células ocupará)
+- Cor representativa (Color)
+
+## 3. Algoritmos de Alocação
+- **First-Fit:** Aloca o processo no primeiro bloco livre que seja grande o suficiente para contê-lo.
+- **Worst-Fit:** Aloca o processo no maior bloco livre disponível, desde que o espaço seja suficiente (deixando o maior fragmento restante possível).
+
+## 4. Coalescência (Realocação)
+- O comando de realocação deve percorrer a lista de memória, unindo blocos livres adjacentes para combater a fragmentação externa, reorganizando os processos ativos se necessário.
+
+---
+
+# ESPECIFICAÇÕES DA INTERFACE (UI - main.dart)
+
+A tela principal deve ser dividida horizontalmente em duas partes principais usando um layout responsivo (ex: `Row` com `Expanded`):
+
+### Painel Esquerdo (Painel de Controle - Menor largura)
+Uma coluna vertical contendo os seguintes controles:
+1. **Toggle Button (Algoritmo):** Alterna estritamente entre os modos "First Fit" e "Worst Fit".
+2. **Botão "Criar Processo":** Abre um diálogo ou formulário simples para definir Nome, Cor e Tamanho (em KB) do processo. Ao confirmar, aciona a alocação do algoritmo selecionado.
+3. **Botão "Deletar Processo":** Permite selecionar/digitar um processo ativo e removê-lo da memória. As células liberadas devem voltar imediatamente para a cor padrão.
+4. **Botão "Realocar Processo":** Executa a lógica de coalescência na lista de memória.
+
+### Painel Direito (Visualizador de Memória - Maior largura)
+- Uma Grid View em formato de **matriz 16x16** (256 blocos).
+- Cada célula representa 1 KB.
+- **Cor padrão (Espaço Livre):** Preto (`Colors.black`).
+- **Espaço Ocupado:** As células devem assumir a cor correspondente ao processo alocado nelas.
+
+---
+
+# REGRAS RESTRITIVAS (DIRETIVAS RÍGIDAS)
+- **Modo Strict:** Este é um prompt de restrição total. Não adicione features extras, não crie animações complexas não solicitadas, não crie arquivos adicionais (como `process.dart`).
+- **Código final:** Forneça o código completo, limpo e bem documentado para ambos os arquivos
